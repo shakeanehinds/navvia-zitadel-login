@@ -5,6 +5,10 @@ packages:
   - apps/*
   - deploy/compose
 
+allowBuilds:
+  '@swc/core': true
+  esbuild: true
+
 exclude:
   - benchmark # because of the node 18 or 20 dependency
 

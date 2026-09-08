@@ -12,9 +12,11 @@ vi.mock("@/lib/logger", () => ({
 
 describe("GET /ready", () => {
   let savedApiUrl: string | undefined;
+  let savedServiceToken: string | undefined;
 
   beforeEach(() => {
     savedApiUrl = process.env.ZITADEL_API_URL;
+    savedServiceToken = process.env.ZITADEL_SERVICE_USER_TOKEN;
     process.env.ZITADEL_API_URL = "http://localhost:8080";
   });
 
@@ -24,7 +26,25 @@ describe("GET /ready", () => {
     } else {
       process.env.ZITADEL_API_URL = savedApiUrl;
     }
+    if (savedServiceToken === undefined) {
+      delete process.env.ZITADEL_SERVICE_USER_TOKEN;
+    } else {
+      process.env.ZITADEL_SERVICE_USER_TOKEN = savedServiceToken;
+    }
     vi.restoreAllMocks();
+  });
+
+  test("does not expose the service token", async () => {
+    process.env.ZITADEL_API_URL = "https://navvia-nruev0.us1.zitadel.cloud";
+    process.env.ZITADEL_SERVICE_USER_TOKEN = "test-login-client-token";
+    vi.mocked(createServiceForHost).mockResolvedValue({
+      getGeneralSettings: vi.fn().mockResolvedValue({ allowedLanguages: ["en"] }),
+    } as any);
+
+    const response = await GET();
+
+    expect(await response.text()).not.toContain("test-login-client-token");
+    expect(response.headers.get("x-zitadel-service-user-token")).toBeNull();
   });
 
   test("should return 200 when gRPC call succeeds", async () => {
