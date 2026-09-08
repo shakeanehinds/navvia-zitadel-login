@@ -56,7 +56,7 @@ export function SessionClearItem({ session, reload }: { session: Session; reload
             reload();
           }
         }}
-        className="group border-divider-light bg-background-light-400 dark:bg-background-dark-400 flex flex-row items-center rounded-md border px-4 py-2 transition-all hover:shadow-lg dark:hover:bg-white/10"
+        className="navvia-choice group flex flex-row items-center px-4 py-2 transition-all"
       >
         <div className="pr-4">
           <Avatar

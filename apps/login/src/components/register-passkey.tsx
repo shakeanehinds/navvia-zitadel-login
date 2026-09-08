@@ -212,7 +212,7 @@ export function RegisterPasskey({
         </div>
       )}
 
-      <div className="mt-8 flex w-full flex-row items-center">
+      <div className="navvia-auth-actions mt-8 flex w-full flex-row items-center">
         {isPrompt ? (
           <Button
             type="button"

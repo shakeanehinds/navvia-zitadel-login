@@ -130,7 +130,7 @@ export function TotpRegister({ uri, loginName, sessionId, requestId, organizatio
               </div>
             )}
 
-            <div className="mt-8 flex w-full flex-row items-center">
+            <div className="navvia-auth-actions mt-8 flex w-full flex-row items-center">
               <span className="flex-grow"></span>
               <Button
                 type="submit"

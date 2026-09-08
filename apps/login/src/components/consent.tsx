@@ -48,7 +48,7 @@ export function ConsentScreen({
     <div className="flex w-full flex-col items-center space-y-4 pt-4">
       <ul className="w-full list-disc space-y-2">
         {scopes?.length === 0 && (
-          <span className="border-divider-light bg-background-light-400 dark:bg-background-dark-400 flex w-full flex-row items-center rounded-md border px-4 py-2 text-sm transition-all">
+          <span className="navvia-choice flex w-full flex-row items-center px-4 py-2 text-sm transition-all">
             <Translated i18nKey="device.scope.openid" namespace="device" />
           </span>
         )}
@@ -62,7 +62,7 @@ export function ConsentScreen({
           return (
             <li
               key={s}
-              className="border-divider-light bg-background-light-400 dark:bg-background-dark-400 flex w-full flex-row items-center rounded-md border px-4 py-2 text-sm transition-all"
+              className="navvia-choice flex w-full flex-row items-center px-4 py-2 text-sm transition-all"
             >
               <span>{resolvedDescription}</span>
             </li>
@@ -80,7 +80,7 @@ export function ConsentScreen({
         </div>
       )}
 
-      <div className="mt-4 flex w-full flex-row items-center">
+      <div className="navvia-auth-actions mt-4 flex w-full flex-row items-center">
         <Button
           onClick={() => {
             denyDeviceAuth();

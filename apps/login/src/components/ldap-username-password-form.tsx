@@ -111,7 +111,7 @@ export function LDAPUsernamePasswordForm({
         </div>
       )}
 
-      <div className="mt-8 flex w-full flex-row items-center">
+      <div className="navvia-auth-actions mt-8 flex w-full flex-row items-center">
         <BackButton data-testid="back-button" />
         <span className="flex-grow"></span>
         <Button

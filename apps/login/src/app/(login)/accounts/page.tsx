@@ -119,7 +119,7 @@ export default async function Page(props: { searchParams: Promise<Record<string 
         <div className="flex w-full flex-col space-y-2">
           <SessionsList sessions={sessions} requestId={requestId} />
           <Link href={`/loginname?` + params}>
-            <div className="flex flex-row items-center rounded-md px-4 py-3 transition-all hover:bg-black/10 dark:hover:bg-white/10">
+            <div className="navvia-choice flex flex-row items-center px-4 py-3 transition-all">
               <div className="mr-4 flex h-8 w-8 flex-row items-center justify-center rounded-full bg-black/5 dark:bg-white/5">
                 <UserPlusIcon className="h-5 w-5" />
               </div>

@@ -33,7 +33,7 @@ export const BaseButton = forwardRef<HTMLButtonElement, SignInWithIdentityProvid
       ref={ref}
       disabled={formStatus.pending}
       className={clsx(
-        `text-text-light-500 focus:border-primary-light-500 dark:text-text-dark-500 focus:dark:border-primary-dark-500 flex flex-1 cursor-pointer flex-row items-center px-4 text-sm transition-all outline-none hover:border-black hover:dark:border-white`,
+        `navvia-idp-button text-text-light-500 flex flex-1 cursor-pointer flex-row items-center px-4 text-sm transition-all outline-none`,
         buttonRoundness,
         idpButtonAppearance,
         `bg-background-light-400 dark:bg-background-dark-500`, // Keep background as fallback for non-glass themes

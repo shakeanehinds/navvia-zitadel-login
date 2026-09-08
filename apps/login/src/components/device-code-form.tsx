@@ -78,7 +78,7 @@ export function DeviceCodeForm({ userCode }: { userCode?: string }) {
           </div>
         )}
 
-        <div className="mt-8 flex w-full flex-row items-center">
+        <div className="navvia-auth-actions mt-8 flex w-full flex-row items-center">
           <BackButton />
           <span className="flex-grow"></span>
           <Button

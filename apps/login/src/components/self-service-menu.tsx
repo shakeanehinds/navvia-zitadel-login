@@ -28,7 +28,7 @@ const SelfServiceItem = ({ name, link }: { name: string; link: string }) => {
     <Link
       prefetch={false}
       href={link}
-      className="group border-divider-light bg-background-light-400 dark:bg-background-dark-400 flex w-full flex-row items-center rounded-md border px-4 py-2 transition-all hover:shadow-lg dark:hover:bg-white/10"
+      className="navvia-choice group flex w-full flex-row items-center px-4 py-2 transition-all"
     >
       {name}
     </Link>

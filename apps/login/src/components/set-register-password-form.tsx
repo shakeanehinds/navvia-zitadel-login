@@ -151,7 +151,7 @@ export function SetRegisterPasswordForm({
 
         {error && <Alert>{error}</Alert>}
 
-        <div className="mt-8 flex w-full flex-row items-center justify-between">
+        <div className="navvia-auth-actions mt-8 flex w-full flex-row items-center justify-between">
           <BackButton data-testid="back-button" />
           <Button
             type="submit"

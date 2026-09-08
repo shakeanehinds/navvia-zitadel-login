@@ -273,6 +273,10 @@ body {
   display: none;
 }
 
+.navvia-auth-actions > a {
+  width: 100%;
+}
+
 .navvia-auth-actions .navvia-button {
   width: 100%;
 }
@@ -300,6 +304,22 @@ body {
 }
 
 .navvia-auth-method:hover {
+  border-color: color-mix(in srgb, var(--navvia-ink) 28%, var(--navvia-border));
+  background: #fff;
+  box-shadow: none;
+}
+
+.navvia-choice,
+.navvia-idp-button {
+  min-height: var(--navvia-control-height);
+  border: 1px solid var(--navvia-border);
+  border-radius: var(--navvia-control-radius);
+  color: var(--navvia-ink);
+  background: color-mix(in srgb, #fff 72%, var(--navvia-canvas));
+}
+
+.navvia-choice:hover,
+.navvia-idp-button:hover {
   border-color: color-mix(in srgb, var(--navvia-ink) 28%, var(--navvia-border));
   background: #fff;
   box-shadow: none;
