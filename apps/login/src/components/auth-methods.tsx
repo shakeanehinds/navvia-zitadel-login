@@ -7,7 +7,7 @@ import { Translated } from "./translated";
 
 const cardClasses = (alreadyAdded: boolean) =>
   clsx(
-    "relative bg-background-light-400 dark:bg-background-dark-400 group block space-y-1.5 rounded-md px-5 py-3  border border-divider-light dark:border-divider-dark transition-all ",
+    "navvia-auth-method relative group block space-y-1.5 px-5 py-3 transition-all",
     alreadyAdded ? "opacity-50 cursor-default" : "hover:shadow-lg hover:dark:bg-white/10",
   );
 

@@ -193,7 +193,7 @@ export function LoginPasskey({ loginName, sessionId, requestId, altPassword, org
           <Alert>{error}</Alert>
         </div>
       )}
-      <div className="mt-8 flex w-full flex-row items-center">
+      <div className="navvia-auth-actions mt-8 flex w-full flex-row items-center">
         {altPassword ? (
           <Button
             type="button"

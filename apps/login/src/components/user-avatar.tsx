@@ -36,7 +36,7 @@ export function UserAvatar({ loginName, displayName, showDropdown, searchParams 
   }
 
   return (
-    <div className={`flex h-full flex-row items-center border p-[1px] dark:border-white/20 ${userAvatarRoundness}`}>
+    <div className={`navvia-identity flex h-full flex-row items-center border p-[1px] ${userAvatarRoundness}`}>
       <div>
         <Avatar size="small" name={displayName ?? loginName ?? ""} loginName={loginName ?? ""} />
       </div>

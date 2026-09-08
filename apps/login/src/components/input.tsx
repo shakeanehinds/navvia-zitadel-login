@@ -66,7 +66,7 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
         <input
           suppressHydrationWarning
           ref={ref}
-          className={styles(!!error, !!disabled, actualRoundness)}
+          className={`navvia-input ${styles(!!error, !!disabled, actualRoundness)}`}
           defaultValue={defaultValue}
           required={required}
           disabled={disabled}

@@ -175,6 +175,143 @@ body {
   text-align: left;
 }
 
+.navvia-auth-flow {
+  display: grid;
+  gap: 1.25rem;
+  width: 100%;
+}
+
+.navvia-auth-flow > * {
+  width: 100%;
+}
+
+.navvia-auth-flow h1 {
+  margin: 0;
+  color: var(--navvia-ink);
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  text-align: left;
+}
+
+.navvia-auth-flow .ztdl-p {
+  color: var(--navvia-muted);
+  line-height: 1.5;
+  text-align: left;
+}
+
+.navvia-auth-flow form {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.navvia-auth-flow label {
+  color: var(--navvia-muted);
+  font-size: 0.78rem;
+  font-weight: 650;
+}
+
+.navvia-auth-flow input:not([type="hidden"]):not([type="checkbox"]):not([type="radio"]) {
+  min-height: var(--navvia-control-height);
+  padding: 0 1rem;
+  border: 1px solid var(--navvia-border);
+  border-radius: var(--navvia-control-radius);
+  color: var(--navvia-ink);
+  background: color-mix(in srgb, #fff 78%, var(--navvia-canvas));
+  font-size: 1rem;
+  font-style: normal;
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease,
+    background 160ms ease;
+}
+
+.navvia-auth-flow input:not([type="hidden"]):focus {
+  border-color: var(--navvia-focus);
+  outline: none;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--navvia-focus) 16%, transparent);
+  background: #fff;
+}
+
+.navvia-auth-flow .navvia-button {
+  justify-content: center;
+  min-height: var(--navvia-control-height);
+  padding: 0 1.25rem;
+  border-radius: var(--navvia-control-radius);
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.navvia-auth-flow .navvia-button[data-testid="submit-button"] {
+  width: 100%;
+  border: 0;
+  color: #fff;
+  background: var(--navvia-ink);
+}
+
+.navvia-auth-flow .navvia-button[data-testid="submit-button"]:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--navvia-ink) 90%, #fff);
+}
+
+.navvia-auth-flow button:disabled {
+  opacity: 0.46;
+}
+
+.navvia-auth-flow [data-testid="back-button"] {
+  min-height: var(--navvia-control-height);
+  border-radius: var(--navvia-control-radius);
+}
+
+.navvia-auth-actions {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 0.75rem;
+  align-items: stretch;
+}
+
+.navvia-auth-actions > .flex-grow {
+  display: none;
+}
+
+.navvia-auth-actions .navvia-button {
+  width: 100%;
+}
+
+.navvia-auth-actions .navvia-button:not([data-testid="submit-button"]) {
+  border-color: transparent;
+  color: var(--navvia-muted);
+  background: transparent;
+}
+
+.navvia-identity {
+  min-height: 3.25rem;
+  padding: 0.25rem;
+  border-color: transparent;
+  border-radius: var(--navvia-control-radius);
+  background: color-mix(in srgb, #fff 58%, var(--navvia-canvas));
+}
+
+.navvia-auth-method {
+  min-height: var(--navvia-control-height);
+  border: 1px solid var(--navvia-border);
+  border-radius: var(--navvia-control-radius);
+  color: var(--navvia-ink);
+  background: color-mix(in srgb, #fff 72%, var(--navvia-canvas));
+}
+
+.navvia-auth-method:hover {
+  border-color: color-mix(in srgb, var(--navvia-ink) 28%, var(--navvia-border));
+  background: #fff;
+  box-shadow: none;
+}
+
+.navvia-auth-flow a:focus-visible,
+.navvia-auth-flow button:focus-visible,
+.navvia-auth-flow input:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--navvia-focus) 30%, transparent);
+  outline-offset: 2px;
+}
+
 .navvia-login-heading h2 {
   color: var(--navvia-ink);
   font-size: 1.35rem;
