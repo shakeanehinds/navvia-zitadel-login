@@ -16,6 +16,189 @@
 html {
   --background-color: #ffffff;
   --dark-background-color: #000000;
+  --navvia-canvas: #eef3ff;
+  --navvia-ink: #19202a;
+  --navvia-muted: oklch(0.48 0.03 264);
+  --navvia-action: #1f5fd2;
+  --navvia-border: oklch(0.87 0.02 264);
+  --navvia-focus: #1f5fd2;
+  --navvia-danger: oklch(0.58 0.22 25);
+  --navvia-success: oklch(0.62 0.17 150);
+  --navvia-control-height: 56px;
+  --navvia-control-radius: 12px;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  color: var(--navvia-ink);
+  background: var(--navvia-canvas);
+  font-family:
+    "Segoe UI",
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
+}
+
+.navvia-login-background {
+  min-height: 100dvh;
+  background-color: var(--navvia-canvas);
+}
+
+.navvia-login-skip {
+  position: fixed;
+  z-index: 100;
+  top: 0.75rem;
+  left: 50%;
+  padding: 0.65rem 0.9rem;
+  border-radius: 0.5rem;
+  color: #fff;
+  background: var(--navvia-ink);
+  transform: translate(-50%, -200%);
+  transition: transform 160ms ease;
+}
+
+.navvia-login-skip:focus {
+  transform: translate(-50%, 0);
+}
+
+.navvia-login-shell {
+  display: grid;
+  grid-template-rows: auto minmax(3rem, 1fr) auto auto;
+  min-height: 100dvh;
+  width: 100%;
+  max-width: 28rem;
+  margin: 0 auto;
+  padding: max(3rem, env(safe-area-inset-top)) 1.75rem max(1.5rem, env(safe-area-inset-bottom));
+  color: var(--navvia-ink);
+  background: var(--navvia-canvas);
+}
+
+.navvia-login-intro p,
+.navvia-login-intro h1,
+.navvia-login-system-status {
+  margin: 0;
+}
+
+.navvia-login-brand {
+  color: var(--navvia-ink);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.24em;
+}
+
+.navvia-login-status {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-top: 0.45rem !important;
+  color: var(--navvia-muted);
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
+.navvia-login-status-dot {
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 999px;
+  background: var(--navvia-success);
+}
+
+.navvia-login-intro h1 {
+  max-width: 17rem;
+  margin-top: 1.5rem;
+  font-size: clamp(2.1rem, 9vw, 3.2rem);
+  font-weight: 650;
+  line-height: 1.04;
+  letter-spacing: -0.05em;
+  text-align: left;
+}
+
+.navvia-login-detail {
+  margin-top: 0.8rem !important;
+  color: var(--navvia-muted);
+  font-size: 0.95rem;
+}
+
+.navvia-login-stage {
+  min-height: clamp(3rem, 12vh, 8rem);
+}
+
+.navvia-login-route {
+  width: 100%;
+}
+
+.navvia-login-route > * {
+  width: 100%;
+}
+
+.navvia-login-meta {
+  display: grid;
+  gap: 0.85rem;
+  padding-top: 0.85rem;
+}
+
+.navvia-login-tools {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.navvia-login-system-status {
+  min-height: 1rem;
+  color: var(--navvia-muted);
+  font-size: 0.7rem;
+  text-align: center;
+}
+
+.navvia-login-system-status span {
+  opacity: 0;
+  animation: navvia-login-letter-in 420ms ease-out forwards;
+}
+
+.navvia-login-heading {
+  display: grid;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.navvia-login-heading h2,
+.navvia-login-heading p {
+  margin: 0;
+  text-align: left;
+}
+
+.navvia-login-heading h2 {
+  color: var(--navvia-ink);
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+
+.navvia-login-heading p {
+  color: var(--navvia-muted);
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+@keyframes navvia-login-letter-in {
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .navvia-login-system-status span {
+    opacity: 1;
+    animation: none;
+  }
 }
 
 .form-checkbox {
