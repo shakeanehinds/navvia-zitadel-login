@@ -1,4 +1,5 @@
 import createNextIntlPlugin from "next-intl/plugin";
+import { getExternalProtocolRewrites } from "./protocol-rewrites.mjs";
 
 const withNextIntl = createNextIntlPlugin();
 
@@ -64,6 +65,9 @@ const nextConfig = {
   // },
   // Better error handling for production builds
   poweredByHeader: false,
+  async rewrites() {
+    return process.env.ZITADEL_API_URL ? getExternalProtocolRewrites(process.env.ZITADEL_API_URL) : [];
+  },
   async headers() {
     return [
       {
