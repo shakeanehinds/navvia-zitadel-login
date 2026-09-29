@@ -38,8 +38,8 @@ Track PAT ownership, expiry, and rotation in Infisical. Rotation timing is not d
 
 ## Verification
 
-1. Confirm `/ui/v2/login/ready` returns `200 OK` and `OK`.
-2. Confirm `/ui/v2/login/loginname` returns `200 OK` and renders the Navvia authentication shell.
+1. Confirm `/ui/v2/login/ready` returns `200 OK` and `OK`. This checks API reachability and general settings only; it does not prove that the login route can render.
+2. Confirm `/ui/v2/login/loginname` returns `200 OK`, renders the Navvia authentication shell, and shows at least one usable sign-in method without a Server Components error. An HTTP 200 by itself is insufficient because the application error boundary can render an error page with that status.
 3. Request `/oauth/v2/authorize` without parameters. A ZITADEL `400 invalid_request` response stating that `client_id` is missing proves the root bridge is working.
 4. Run a real authorization request from the non-production Navvia application.
 5. Test username/password, MFA, cancellation, logout, account switching, error recovery, and mobile-browser behavior.
