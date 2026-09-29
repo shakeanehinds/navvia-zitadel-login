@@ -63,4 +63,4 @@ If Preview login fails:
 
 ## Production gate
 
-Before enabling the production Login V2 flow, configure `ZITADEL_INSTANCE_HOST` in the Production environment to the hostname portion of `ZITADEL_API_URL`. The production login UI host is not the ZITADEL instance host. Do not enable Login V2 instance-wide or alter production redirects until Preview acceptance is complete and an explicit production change is approved.
+Before enabling the production Login V2 flow, add the separate production Login UI domain (`login.navvia.app`) to the ZITADEL instance's **Trusted Domains**. The Login UI sends its public hostname as `x-zitadel-public-host`; ZITADEL returns `Instance not found` when that hostname is not trusted. Also configure `ZITADEL_INSTANCE_HOST` in the Production environment to the hostname portion of `ZITADEL_API_URL`. The production login UI host is not the ZITADEL instance host. Do not enable Login V2 instance-wide or alter production redirects until Preview acceptance is complete and an explicit production change is approved.
