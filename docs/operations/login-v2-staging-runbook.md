@@ -1,5 +1,8 @@
 # Navvia Login V2 staging runbook
 
+> **Status:** Current
+> **Last updated:** 2026-09-29
+
 ## Scope
 
 This runbook covers the isolated Navvia Login V2 Preview deployment. It does not authorize production cutover or changes to the existing `navvia.app` authentication flow.
@@ -52,10 +55,11 @@ Track PAT ownership, expiry, and rotation in Infisical. Rotation timing is not d
 
 If Preview login fails:
 
-1. Disable **Use new login UI** on the non-production ZITADEL application, or clear its custom Login V2 base URL.
-2. If an instance-wide Login V2 feature was enabled, disable it using the break-glass IAM Owner PAT.
-3. Repoint the stable Preview alias to the last known-good Vercel deployment if the failure is deployment-specific.
-4. Keep production authentication unchanged until the complete staging matrix passes.
+1. Check the Vercel function logs for `Failed to fetch security settings from API`. The log records the HTTP status, effective ZITADEL instance-host header, and bounded provider error code/message. It does not record credentials or the raw response body.
+2. Disable **Use new login UI** on the non-production ZITADEL application, or clear its custom Login V2 base URL.
+3. If an instance-wide Login V2 feature was enabled, disable it using the break-glass IAM Owner PAT.
+4. Repoint the stable Preview alias to the last known-good Vercel deployment if the failure is deployment-specific.
+5. Keep production authentication unchanged until the complete staging matrix passes.
 
 ## Production gate
 

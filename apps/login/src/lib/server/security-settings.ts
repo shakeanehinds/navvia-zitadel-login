@@ -2,6 +2,7 @@ import { PromiseCache } from "@/lib/cache";
 import { applyCustomHeaders } from "@/lib/custom-headers";
 import { createLogger } from "@/lib/logger";
 import type { GetSecuritySettingsResponseJson } from "@zitadel/proto/zitadel/settings/v2/settings_service_pb";
+import { summarizeProviderError } from "./api-error";
 
 const logger = createLogger("security-settings");
 
@@ -117,9 +118,18 @@ async function fetchIframeOrigins(baseUrl: string, instanceHost?: string, public
   });
 
   if (!response.ok) {
+    let errorBody = "";
+    try {
+      errorBody = await response.clone().text();
+    } catch {
+      // The status and request host still identify the failing boundary.
+    }
+
     logger.error("Failed to fetch security settings from API", {
       status: response.status,
       statusText: response.statusText,
+      instanceHost: reqHeaders["x-zitadel-instance-host"]?.slice(0, 255),
+      ...summarizeProviderError(errorBody),
     });
     // Return null instead of undefined — lru-cache treats undefined as a
     // fetch failure and throws "fetch() returned undefined".
