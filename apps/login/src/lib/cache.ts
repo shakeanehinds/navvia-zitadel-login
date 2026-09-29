@@ -4,9 +4,9 @@ interface FetchContext {
   fetcher: () => Promise<any>;
 }
 
-// lru-cache uses `undefined` to indicate that a fetch did not produce a value,
-// so preserve an actual undefined result with a private cacheable sentinel.
-const CACHED_UNDEFINED = Symbol("cached-undefined");
+interface CachedValue {
+  value: any;
+}
 
 /**
  * A bounded, stale-while-revalidate in-memory promise cache backed by lru-cache.
@@ -19,7 +19,7 @@ const CACHED_UNDEFINED = Symbol("cached-undefined");
  * - Bounded to `maxSize` entries to prevent unbounded memory growth
  */
 export class PromiseCache {
-  private readonly cache: LRUCache<string, any, FetchContext>;
+  private readonly cache: LRUCache<string, CachedValue, FetchContext>;
 
   constructor(maxSize = 100_000, perf?: { now: () => number }) {
     this.cache = new LRUCache<string, any, FetchContext>({
@@ -32,8 +32,7 @@ export class PromiseCache {
       noDeleteOnFetchRejection: true,
       allowStaleOnFetchRejection: true,
       fetchMethod: async (_key, _staleValue, { context }) => {
-        const value = await context.fetcher();
-        return value === undefined ? CACHED_UNDEFINED : value;
+        return { value: await context.fetcher() };
       },
       ...(perf ? { perf, ttlResolution: 0 } : {}),
     });
@@ -53,7 +52,7 @@ export class PromiseCache {
         ttl: ttlMs,
         context: { fetcher },
       })
-      .then((value) => (value === CACHED_UNDEFINED ? undefined : value)) as Promise<T>;
+      .then(({ value }) => value as T);
   }
 
   /** Current number of entries (including stale). */
