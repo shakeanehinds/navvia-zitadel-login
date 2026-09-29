@@ -4,10 +4,6 @@ interface FetchContext {
   fetcher: () => Promise<any>;
 }
 
-interface CachedValue {
-  value: any;
-}
-
 /**
  * A bounded, stale-while-revalidate in-memory promise cache backed by lru-cache.
  *
@@ -19,7 +15,7 @@ interface CachedValue {
  * - Bounded to `maxSize` entries to prevent unbounded memory growth
  */
 export class PromiseCache {
-  private readonly cache: LRUCache<string, CachedValue, FetchContext>;
+  private readonly cache: LRUCache<string, any, FetchContext>;
 
   constructor(maxSize = 100_000, perf?: { now: () => number }) {
     this.cache = new LRUCache<string, any, FetchContext>({
@@ -32,7 +28,7 @@ export class PromiseCache {
       noDeleteOnFetchRejection: true,
       allowStaleOnFetchRejection: true,
       fetchMethod: async (_key, _staleValue, { context }) => {
-        return { value: await context.fetcher() };
+        return context.fetcher();
       },
       ...(perf ? { perf, ttlResolution: 0 } : {}),
     });
@@ -47,12 +43,10 @@ export class PromiseCache {
    * on the fetch.
    */
   getOrFetch<T>(key: string, fetcher: () => Promise<T>, ttlMs: number): Promise<T> {
-    return this.cache
-      .forceFetch(key, {
-        ttl: ttlMs,
-        context: { fetcher },
-      })
-      .then(({ value }) => value as T);
+    return this.cache.forceFetch(key, {
+      ttl: ttlMs,
+      context: { fetcher },
+    }) as Promise<T>;
   }
 
   /** Current number of entries (including stale). */

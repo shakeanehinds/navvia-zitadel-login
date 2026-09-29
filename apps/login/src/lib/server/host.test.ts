@@ -8,9 +8,20 @@ describe("Host utility functions", () => {
 
   afterEach(() => {
     vi.restoreAllMocks();
+    vi.unstubAllEnvs();
   });
 
   describe("getInstanceHost", () => {
+    test("should use the configured ZITADEL instance host before the incoming login host", () => {
+      vi.stubEnv("ZITADEL_INSTANCE_HOST", "navvia-nruev0.us1.zitadel.cloud");
+      const mockHeaders = {
+        get: vi.fn((key: string) => (key === "host" ? "login.navvia.app" : null)),
+      } as any;
+
+      expect(getInstanceHost(mockHeaders)).toBe("navvia-nruev0.us1.zitadel.cloud");
+      expect(mockHeaders.get).not.toHaveBeenCalled();
+    });
+
     test("should use x-zitadel-instance-host when available", () => {
       const mockHeaders = {
         get: vi.fn((key: string) => {

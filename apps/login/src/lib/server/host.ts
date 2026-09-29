@@ -8,7 +8,13 @@ import { ReadonlyHeaders } from "next/dist/server/web/spec-extension/adapters/he
  * @throws Error if no host is found
  */
 export function getInstanceHost(headers: ReadonlyHeaders): string | null {
-  // use standard proxy headers (x-forwarded-host → host) for both multi-tenant and self-hosted, do not use x-zitadel-instance-host
+  const configuredInstanceHost = process.env.ZITADEL_INSTANCE_HOST?.trim();
+  if (configuredInstanceHost) {
+    return configuredInstanceHost;
+  }
+
+  // Prefer the configured instance host for deployments where the login UI
+  // runs on a separate domain from ZITADEL. Otherwise honor proxy headers.
   const instanceHost =
     headers.get("x-zitadel-instance-host") || headers.get("x-zitadel-forward-host") || headers.get("host");
 

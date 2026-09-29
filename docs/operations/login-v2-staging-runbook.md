@@ -21,9 +21,12 @@ Configure these values for Preview without storing values in this repository:
 
 - `NEXT_PUBLIC_BASE_PATH`
 - `ZITADEL_API_URL`
+- `ZITADEL_INSTANCE_HOST`
 - `EMAIL_VERIFICATION`
 - `CUSTOM_REQUEST_HEADERS`
 - `ZITADEL_SERVICE_USER_TOKEN` (secret)
+
+Set `ZITADEL_INSTANCE_HOST` to the hostname portion of `ZITADEL_API_URL`, without a scheme or path (for example, `navvia-nruev0.us1.zitadel.cloud`). It identifies the ZITADEL instance and must not be the separate login UI hostname.
 
 `ZITADEL_SERVICE_USER_TOKEN` must be the least-privileged Login Client PAT with `IAM_LOGIN_CLIENT`. Never deploy the IAM Owner recovery PAT.
 
@@ -56,4 +59,4 @@ If Preview login fails:
 
 ## Production gate
 
-Do not attach `login.navvia.app`, enable Login V2 instance-wide, or alter production redirects until Preview acceptance is complete and an explicit production change is approved.
+Before enabling the production Login V2 flow, configure `ZITADEL_INSTANCE_HOST` in the Production environment to the hostname portion of `ZITADEL_API_URL`. The production login UI host is not the ZITADEL instance host. Do not enable Login V2 instance-wide or alter production redirects until Preview acceptance is complete and an explicit production change is approved.

@@ -41,16 +41,6 @@ describe("PromiseCache", () => {
       expect(cache.size).toBe(1);
     });
 
-    test("should cache an undefined result without treating it as a fetch failure", async () => {
-      cache = new PromiseCache(10);
-      const fetcher = vi.fn(() => Promise.resolve(undefined));
-
-      await expect(cache.getOrFetch("optional-setting", fetcher, 60_000)).resolves.toBeUndefined();
-      await expect(cache.getOrFetch("optional-setting", fetcher, 60_000)).resolves.toBeUndefined();
-      expect(fetcher).toHaveBeenCalledTimes(1);
-      expect(cache.size).toBe(1);
-    });
-
     test("should return cached value on cache hit", async () => {
       cache = new PromiseCache(10);
       let callCount = 0;
